@@ -29,6 +29,7 @@ public class Aluno {
     private LocalDateTime dataAtualizacao;
 
     @ManyToOne
-    private Curso curso_id;
+    @JoinColumn( name = "curso_id")
+    private Curso curso;
 
 }
