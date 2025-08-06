@@ -1,6 +1,7 @@
 package com.caroline.revisao.domain.repository;
 
 import com.caroline.revisao.domain.model.Aluno;
+import com.caroline.revisao.domain.model.Curso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,9 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AlunoRepository {
-    List<Aluno> listar();
-    Aluno buscar (Long id);
-    Aluno salvar (Aluno aluno);
-    void remover (Long id);
+public interface AlunoRepository extends JpaRepository<Aluno, Long> {
+    @Query("from Aluno c join fetch a.curso")
+    List<Aluno> findAll();
 }
